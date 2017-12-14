@@ -24,7 +24,7 @@ class CommentersController < ApplicationController
   # POST /commenters
   # POST /commenters.json
   def create
-    @commenter = Commenter.new(commenter_params)
+@commenter = Commenter.new(commenter_params)
 @commenter.user = current_user
 
     respond_to do |format|

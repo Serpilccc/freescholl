@@ -27,7 +27,11 @@
             <li>
                 <a href="#contact">Contact</a>
             </li>
+            <li>
+    <%= link_to "Poster un cours", new_course_path %>
+  </li>
         </ul>
+        
        <ul>
         <% if user_signed_in? %>
   <li>
@@ -50,6 +54,7 @@
   <li>
     <%= link_to "Se connecter via facebook", user_facebook_omniauth_authorize_path %>
   </li>
+
   <% end %>
 </ul>
     </header>

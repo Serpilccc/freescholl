@@ -26,11 +26,16 @@ class CoursesController < ApplicationController
   def edit
   end
 
+  def current_author
+  current_user.author || Author.create(user: current_user)
+end
+  
+
   # POST /courses
   # POST /courses.json
   def create
-    current_author = Author.create(user: current_user) 
-    @course = author.courses.build(course_params)
+    @course = Course.new(course_params)
+    @course.author = current_author
 
     respond_to do |format|
       if @course.save
