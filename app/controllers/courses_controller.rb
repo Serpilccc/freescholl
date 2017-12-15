@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+   
+  
 
   # GET /courses
   # GET /courses.json
@@ -80,7 +82,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:titre, :matiere, :fac, :annee)
+      params.require(:course).permit(:titre, :matiere, :fac, :annee, :pdf)
     end
 
 end

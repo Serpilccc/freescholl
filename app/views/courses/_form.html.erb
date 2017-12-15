@@ -31,6 +31,10 @@
     <%= form.text_field :annee, id: :course_annee %>
   </div>
 
+
+        <td><%= course.titre %></td>
+        <td><%= link_to "Download Course", course.pdf_url %></td>
+
   <div class="actions">
     <%= form.submit %>
   </div>

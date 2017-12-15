@@ -37,7 +37,7 @@ def self.from_facebook(auth)
   end
 end
 
-
-
+mount_uploader :image, ImageUploader
 
 end
+

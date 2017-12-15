@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212162420) do
+ActiveRecord::Schema.define(version: 20171214212746) do
 
   create_table "authors", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,7 +31,9 @@ ActiveRecord::Schema.define(version: 20171212162420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "commenter_id"
+    t.integer "course_id"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+    t.index ["course_id"], name: "index_comments_on_course_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(version: 20171212162420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "author_id"
+    t.string "pdf"
     t.index ["author_id"], name: "index_courses_on_author_id"
   end
 
@@ -63,6 +66,7 @@ ActiveRecord::Schema.define(version: 20171212162420) do
     t.string "facebook_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["fac"], name: "index_users_on_fac", unique: true
     t.index ["formation"], name: "index_users_on_formation", unique: true

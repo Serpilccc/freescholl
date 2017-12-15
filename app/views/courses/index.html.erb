@@ -1,18 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Courses</h1>
-
-<table>
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+<%= link_to "Nouveau document", new_course_path, class: "btn btn-primary" %>
+<br />
+<br />
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Titre</th>
-      <th>Matiere</th>
+      <th>Matière</th>
       <th>Fac</th>
-      <th>Annee</th>
-      <th colspan="3"></th>
+      <th>Année</th>
+      <th>Download Link</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
-
   <tbody>
     <% @courses.each do |course| %>
       <tr>
@@ -20,14 +25,17 @@
         <td><%= course.matiere %></td>
         <td><%= course.fac %></td>
         <td><%= course.annee %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><%= link_to "Download Course", course.pdf_url %></td>
+        <td><%= button_to "Delete",  course, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{course.pdf_url}?" %></td>
       </tr>
-    <% end %>
+      
+<% end -%>
+  
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Course', new_course_path %>
+
+
+

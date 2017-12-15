@@ -1,5 +1,24 @@
 <h1>New Course</h1>
 
-<%= render 'form', course: @course %>
 
-<%= link_to 'Back', courses_path %>
+
+<% if !@course.errors.empty? %>
+  <div class="alert alert-error">
+    <ul>
+      <% @courses.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="well">
+  <%= form_for @course, html: { multipart: true } do |f| %>
+    <%= f.label :titre %>
+    <%= f.text_field :titre %>
+    <%= f.label :pdf %>
+    <%= f.file_field :pdf %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to 'Back', courses_path %>
+</div>

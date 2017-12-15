@@ -3,6 +3,8 @@
 
 <h2>Voici ton profil</h2>
 
+<%=simple_form_for(@user) do |f|%>
+
 <p>
   <strong>Username:</strong>
   <%= @user.username %>
@@ -22,9 +24,17 @@
 <p>
   <strong>Niveau:</strong>
   <%= @user.niveau %>
-</p>
+
+    <strong>Image:</strong>
+  <%= @user.image %>
+ <%= f. input :image , as: :file%>
+<% end -%>
 
 
  <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete %>
+
+  <%= link_to "Voir ses documents", course_path %>
+
+
 
 
