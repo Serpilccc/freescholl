@@ -28,9 +28,11 @@ def current_commenter
   current_user.commenter || Commenter.create(user: current_user)
 end
   
+
   def create
 @comment = Comment.new(comment_params)
 @comment.commenter = current_commenter
+
 
     respond_to do |format|
       if @comment.save

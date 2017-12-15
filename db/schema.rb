@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215184045) do
+ActiveRecord::Schema.define(version: 20171215213855) do
 
   create_table "authors", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20171215184045) do
     t.integer "course_id"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
     t.index ["course_id"], name: "index_comments_on_course_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
+    t.index ["sender_id"], name: "index_conversations_on_sender_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -60,6 +69,16 @@ ActiveRecord::Schema.define(version: 20171215184045) do
     t.index ["cached_weighted_subscribe_average"], name: "index_courses_on_cached_weighted_subscribe_average"
     t.index ["cached_weighted_subscribe_score"], name: "index_courses_on_cached_weighted_subscribe_score"
     t.index ["cached_weighted_subscribe_total"], name: "index_courses_on_cached_weighted_subscribe_total"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "searches", force: :cascade do |t|

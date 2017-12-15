@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_one :author
   has_one :commenter
+  has_many :conversations, :foreign_key => :sender_id
 
   acts_as_votable
 
