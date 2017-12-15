@@ -42,6 +42,8 @@
             <li>
     <%= link_to "Poster un cours", new_course_path %>
   </li>
+
+
         </ul>
        <ul>
         <% if user_signed_in? %>
@@ -74,7 +76,12 @@
         <div id="lead-content">
             <h1>My Free School</h1>
             <h2>Partager vos cours</h2>
-            <a href="#" class="btn-rounded-white">Connectez-vous</a>
+            <h3><%= form_tag courses_path, :method => 'get' do %>
+<%= text_field_tag :search, params[:search] %>
+<%= submit_tag "Search" %>
+ <% end -%>
+ <%=link_to "Advanced search", new_search_path %>
+</h3>
         </div>
         <!-- End #lead-content -->
 
@@ -104,6 +111,9 @@
         </div>
     </div>
     <!-- End #about -->
+
+
+  
 
     <div id="experience" class="background-alt">
         <h2 class="heading">“L'enseignement : apprendre à savoir, à savoir faire, à faire savoir. L'éducation : apprendre à savoir être.”</h2>
