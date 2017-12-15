@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :authenticate_user!
    
   
 
@@ -7,6 +8,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.search(params[:search])
+    @courses = Course.all.order(:cached_weighted_subscribe_score => :desc)
     respond_to do |format|
       format.html
       format.json
@@ -64,6 +66,17 @@ end
     end
   end
 
+  def upvote
+  @course.upvote_from current_user
+  redirect_to courses_path
+end
+
+def downvote
+    @course.downvote_from current_user
+  redirect_to courses_path
+  end
+
+
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
@@ -79,6 +92,8 @@ end
     def set_course
       @course = Course.find(params[:id])
     end
+
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params

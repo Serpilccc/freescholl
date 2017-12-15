@@ -30,10 +30,11 @@
  <%= f. input :image , as: :file%>
 <% end -%>
 
+<%= link_to "Nouveau document", new_course_path, class: "btn btn-primary" %>
 
- <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete %>
+ <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
 
-  <%= link_to "Voir ses documents", course_path %>
+  <%= link_to "Voir ses documents", course_path, class: "btn btn-primary" %>
 
 
 

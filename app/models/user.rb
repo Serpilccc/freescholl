@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_one :author
   has_one :commenter
 
+  acts_as_votable
+
   attr_accessor :login
 
 validates :username, presence: true, uniqueness: {case_sensitive: false}

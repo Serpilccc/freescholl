@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  get 'searches/index'
 
-  get 'searches/show'
 
-  get 'searches/edit'
+ resources :courses do 
+    member do
+      put "like" =>"courses#upvote"
+      put "unlike" =>"courses#downvote"
+    end
+  end
 
-  resources :courses
   resources :comments
   resources :commenters
   resources :authors

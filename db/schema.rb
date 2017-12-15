@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215025000) do
+ActiveRecord::Schema.define(version: 20171215184045) do
 
   create_table "authors", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -45,7 +45,21 @@ ActiveRecord::Schema.define(version: 20171215025000) do
     t.datetime "updated_at", null: false
     t.integer "author_id"
     t.string "pdf"
+    t.integer "cached_scoped_subscribe_votes_total", default: 0
+    t.integer "cached_scoped_subscribe_votes_score", default: 0
+    t.integer "cached_scoped_subscribe_votes_up", default: 0
+    t.integer "cached_scoped_subscribe_votes_down", default: 0
+    t.integer "cached_weighted_subscribe_score", default: 0
+    t.integer "cached_weighted_subscribe_total", default: 0
+    t.float "cached_weighted_subscribe_average", default: 0.0
     t.index ["author_id"], name: "index_courses_on_author_id"
+    t.index ["cached_scoped_subscribe_votes_down"], name: "index_courses_on_cached_scoped_subscribe_votes_down"
+    t.index ["cached_scoped_subscribe_votes_score"], name: "index_courses_on_cached_scoped_subscribe_votes_score"
+    t.index ["cached_scoped_subscribe_votes_total"], name: "index_courses_on_cached_scoped_subscribe_votes_total"
+    t.index ["cached_scoped_subscribe_votes_up"], name: "index_courses_on_cached_scoped_subscribe_votes_up"
+    t.index ["cached_weighted_subscribe_average"], name: "index_courses_on_cached_weighted_subscribe_average"
+    t.index ["cached_weighted_subscribe_score"], name: "index_courses_on_cached_weighted_subscribe_score"
+    t.index ["cached_weighted_subscribe_total"], name: "index_courses_on_cached_weighted_subscribe_total"
   end
 
   create_table "searches", force: :cascade do |t|

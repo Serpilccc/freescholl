@@ -2,6 +2,8 @@ class Course < ApplicationRecord
 	belongs_to :author
 	has_many :comments
 
+    acts_as_votable
+    
 	mount_uploader :pdf, PdfUploader 
 
 	def self.search(search)
