@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+root 'home#index'
 
  resources :courses do 
     member do
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
   end
 
 authenticated :user do
-    root 'home#index'
   end
 
 
@@ -24,6 +24,7 @@ unauthenticated :user do
   end
 
   resources :messages
+  resources :conversations
   resources :comments
   resources :commenters
   resources :authors
